@@ -1,6 +1,6 @@
 ﻿namespace Progresstracker
 {
-    partial class Form1
+    partial class Mainwindow
     {
         /// <summary>
         ///  Required designer variable.
