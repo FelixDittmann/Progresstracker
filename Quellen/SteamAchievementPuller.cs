@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json.Linq;
+using Progresstracker.Configuration;
 using Progresstracker.DataObjects;
 
 public class SteamAchievementPuller
@@ -7,13 +8,15 @@ public class SteamAchievementPuller
     private readonly string steamId;
     private string? appId;
     private HttpClient httpClient;
+    private readonly ConfigurationSettingsHandler _config;
 
-    public SteamAchievementPuller(string apikey, string steamid, HttpClient client, string? appid)
+    public SteamAchievementPuller(string apikey, string steamid, HttpClient client, ConfigurationSettingsHandler configuration, string? appid)
     {
         apiKey = apikey;
         steamId = steamid;
         appId = appid;
         httpClient = client;
+        _config = configuration;
     }
 
     public async Task<List<Spiel>> GetOwnedGamesAsync()

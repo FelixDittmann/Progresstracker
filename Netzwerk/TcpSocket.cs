@@ -7,6 +7,7 @@ using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
+using Progresstracker.Configuration;
 
 namespace Progresstracker.Netzwerk
 {
@@ -16,14 +17,16 @@ namespace Progresstracker.Netzwerk
         private bool _isConnected;
         private readonly ILogger _logger;
         private TcpClient _tcpClient;
+        private ConfigurationSettingsHandler _config;
 
         public bool IsConnected => _isConnected;
 
-        public TcpSocket(ILogger logger)
+        public TcpSocket(ILogger logger, ConfigurationSettingsHandler configuration)
         {
             _logger = logger;
             _tcpClient = new();
             _isConnected = false;
+            _config = configuration;
         }
 
         public void Connect(string address, int port)

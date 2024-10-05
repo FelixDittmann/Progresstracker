@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Progresstracker.Configuration;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,11 +13,17 @@ public class ProgressTrackerDatabaseContext : DbContext
     {
         public DbSet<Game> Games { get; set; }
         public DbSet<Achievement> Achievements { get; set; }
+        private ConfigurationSettingsHandler _configuration;
+
+        public ProgressTrackerDatabaseContext(ConfigurationSettingsHandler configuration) : base()
+        {
+            _configuration = configuration;
+        }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             // SQLite-Datenbankverbindung konfigurieren
-            optionsBuilder.UseSqlite("Data Source=steam.db");
+            optionsBuilder.UseSqlite(_configuration.DatabasePath);
         }
     }
 }
