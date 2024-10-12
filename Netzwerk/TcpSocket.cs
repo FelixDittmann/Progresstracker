@@ -103,7 +103,7 @@ namespace Progresstracker.Netzwerk
             GC.SuppressFinalize(this);
         }
 
-        
+        [LoggerMessage(Level = LogLevel.Information, Message = "Connection refused: {connectResponse}")]
         static partial void LogConnectionRefused(ILogger logger, string connectResponse);
 
     }
