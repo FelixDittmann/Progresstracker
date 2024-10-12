@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Progresstracker.Configuration;
+using Progresstracker.DataObjects;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,6 +14,8 @@ public class ProgressTrackerDatabaseContext : DbContext
     {
         public DbSet<Game> Games { get; set; }
         public DbSet<Achievement> Achievements { get; set; }
+        public DbSet<Profile> Profiles { get; set; } 
+        public DbSet<SportActivity> SportActivities { get; set; }
         private ConfigurationSettingsHandler _configuration;
 
         public ProgressTrackerDatabaseContext(ConfigurationSettingsHandler configuration) : base()
@@ -22,7 +25,6 @@ public class ProgressTrackerDatabaseContext : DbContext
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            // SQLite-Datenbankverbindung konfigurieren
             optionsBuilder.UseSqlite(_configuration.DatabasePath);
         }
     }
