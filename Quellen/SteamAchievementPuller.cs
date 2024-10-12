@@ -1,30 +1,33 @@
-﻿using Newtonsoft.Json.Linq;
+﻿using Microsoft.EntityFrameworkCore.Metadata;
+using Newtonsoft.Json.Linq;
 using Progresstracker.Configuration;
+using Progresstracker.Database;
 using Progresstracker.DataObjects;
+using Progresstracker.Quellen;
 
-public class SteamAchievementPuller
+public class SteamAchievementPuller : IDataSource
 {
     private readonly string apiKey;
     private readonly string steamId;
-    private string? appId;
     private HttpClient httpClient;
     private readonly ConfigurationSettingsHandler _config;
+    private string _sourcename;
 
-    public SteamAchievementPuller(string apikey, string steamid, HttpClient client, ConfigurationSettingsHandler configuration, string? appid)
+    public SteamAchievementPuller(ConfigurationSettingsHandler configuration, Profile profile)
     {
-        apiKey = apikey;
-        steamId = steamid;
-        appId = appid;
-        httpClient = client;
+        apiKey = profile.SteamApiKey;
+        steamId = profile.SteamProfileID;
+        httpClient = new HttpClient();
         _config = configuration;
+        _sourcename = "steam";
     }
 
-    public async Task<List<Spiel>> GetOwnedGamesAsync()
+    public async Task<List<Game>> GetOwnedGamesAsync(Profile profile)
     {
         string url = $"https://api.steampowered.com/IPlayerService/GetOwnedGames/v1/?key={apiKey}&steamid={steamId}&include_appinfo=1&include_played_free_games=1";
 
         HttpResponseMessage response = await httpClient.GetAsync(url);
-        List<Spiel> ownedGames = new();
+        List<Game> ownedGames = new();
 
         if (response.IsSuccessStatusCode)
         {
@@ -33,13 +36,12 @@ public class SteamAchievementPuller
 
             foreach (var game in json["response"]["games"])
             {
-                var newGame = new Spiel
-                {
-                    AppId = game["appid"].ToObject<int>(),
-                    Name = game["name"].ToString(),
-                    Playtime = game["playtime_forever"].ToObject<int>(),
-                    Achievements = new List<Progresstracker.Database.Achievement>()
-                };
+                long AppId = game["appid"].ToObject<long>();
+                string Name = game["name"].ToString();
+                int PlaytimeForever = game["playtime_forever"].ToObject<int>();
+                string Source = _sourcename;
+                var newGame = new Game(AppId, Name, PlaytimeForever, Source);
+                    
                 ownedGames.Add(newGame);
             }
         }
@@ -50,29 +52,30 @@ public class SteamAchievementPuller
         return ownedGames;
     }
 
-    public async Task GetPlayerAchievementsAsync(string gameId)
+    public async Task<List<Achievement>> GetAchievementsAsync(long gameId, Profile profile)
     {
+        string url = $"https://api.steampowered.com/ISteamUserStats/GetPlayerAchievements/v1/?key={apiKey}&steamid={steamId}&appid={gameId}";
+
+        HttpResponseMessage response = await httpClient.GetAsync(url);
+        List<Achievement> achievementList = new();
+        if (response.IsSuccessStatusCode)
         {
-            string url = $"https://api.steampowered.com/ISteamUserStats/GetPlayerAchievements/v1/?key={apiKey}&steamid={steamId}&appid={gameId}";
+            string result = await response.Content.ReadAsStringAsync();
+            JObject json = JObject.Parse(result);
 
-            HttpResponseMessage response = await httpClient.GetAsync(url);
-            if (response.IsSuccessStatusCode)
+            // Ergebnisse parsen und Errungenschaften anzeigen
+            foreach (var achievement in json["playerstats"]["achievements"])
             {
-                string result = await response.Content.ReadAsStringAsync();
-                JObject json = JObject.Parse(result);
-
-                // Ergebnisse parsen und Errungenschaften anzeigen
-                foreach (var achievement in json["playerstats"]["achievements"])
-                {
-                    string name = achievement["apiname"].ToString();
-                    bool achieved = achievement["achieved"].ToObject<int>() == 1;
-                    Console.WriteLine($"Errungenschaft: {name}, Freigeschaltet: {achieved}");
-                }
-            }
-            else
-            {
-                Console.WriteLine($"Fehler: {response.StatusCode}");
+                string name = achievement["apiname"].ToString();
+                bool achieved = achievement["achieved"].ToObject<int>() == 1;
+                string description = achievement["description"]?.ToString() ?? "No description available";
+                achievementList.Add(new Achievement(name, description, achieved, gameId, profile.ProfileID, "steam"));
             }
         }
+        else
+        {
+            Console.WriteLine($"Fehler: {response.StatusCode}");
+        }
+        return achievementList;
     }
 }
