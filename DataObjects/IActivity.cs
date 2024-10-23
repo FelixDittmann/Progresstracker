@@ -12,6 +12,11 @@ namespace Progresstracker.DataObjects
         public string Name { get; set; }
         public string Category { get; set; }
         public int WantedResult { get; set; }
-        public int CurrentProgress { get; set; }
+        public List<int> CurrentProgress { get; set; }
+
+        public void UpdateCurrentProgress(int newProgress)
+        {
+            CurrentProgress.Add(newProgress);
+        }
     }
 }

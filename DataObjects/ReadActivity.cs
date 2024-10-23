@@ -6,13 +6,12 @@ using System.Threading.Tasks;
 
 namespace Progresstracker.DataObjects
 {
-    public class SportActivity(string name, string category, int wantedResult, int? currentProgress) : IActivity
+    internal class ReadActivity(int activityId, string name, string category, int wantedResult, List<int>? currentProg) : IActivity
     {
-        public long ActivityID { get; set; }
+        public long ActivityID { get; set; } = activityId;
         public string Name { get; set; } = name;
         public string Category { get; set; } = category;
         public int WantedResult { get; set; } = wantedResult;
-        public int CurrentProgress { get; set; } = currentProgress ?? 0;
-
+        public List<int> CurrentProgress { get; set; } = currentProg ?? [];
     }
 }
