@@ -42,16 +42,17 @@
             // label_Name
             // 
             label_Name.AutoSize = true;
+            label_Name.Enabled = false;
             label_Name.Location = new Point(108, 112);
             label_Name.Name = "label_Name";
             label_Name.Size = new Size(83, 32);
             label_Name.TabIndex = 0;
             label_Name.Text = "Name:";
-            label_Name.Click += label1_Click;
             // 
             // label_category
             // 
             label_category.AutoSize = true;
+            label_category.Enabled = false;
             label_category.Location = new Point(108, 163);
             label_category.Name = "label_category";
             label_category.Size = new Size(121, 32);
@@ -61,6 +62,7 @@
             // label_goal
             // 
             label_goal.AutoSize = true;
+            label_goal.Enabled = false;
             label_goal.Location = new Point(108, 222);
             label_goal.Name = "label_goal";
             label_goal.Size = new Size(58, 32);
@@ -73,6 +75,7 @@
             textBox_Name.Name = "textBox_Name";
             textBox_Name.Size = new Size(200, 39);
             textBox_Name.TabIndex = 3;
+            textBox_Name.TextChanged += textBox_Name_TextChanged;
             // 
             // textBox_Category
             // 
@@ -91,6 +94,7 @@
             // label_currentProgress
             // 
             label_currentProgress.AutoSize = true;
+            label_currentProgress.Enabled = false;
             label_currentProgress.Location = new Point(108, 273);
             label_currentProgress.Name = "label_currentProgress";
             label_currentProgress.Size = new Size(239, 32);
@@ -112,6 +116,7 @@
             button_create.TabIndex = 8;
             button_create.Text = "Erstellen";
             button_create.UseVisualStyleBackColor = true;
+            button_create.Click += button_create_Click;
             // 
             // ActivityCreationWindow
             // 

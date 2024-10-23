@@ -1,3 +1,5 @@
+using Progresstracker.UI;
+
 namespace Progresstracker
 {
     public partial class Mainwindow : Form
@@ -5,6 +7,12 @@ namespace Progresstracker
         public Mainwindow()
         {
             InitializeComponent();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            ActivityCreationWindow activityCreationWindow = new();
+            activityCreationWindow.Show();
         }
     }
 }
