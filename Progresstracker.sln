@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Progresstracker.Application
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Progresstracker.Domain", "Progresstracker.Domain\Progresstracker.Domain.csproj", "{A34D24AD-3855-40CC-AD1E-01AD2A734F62}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Progresstracker", "Progresstracker.Monolith\Progresstracker.csproj", "{9F943F60-9D26-4F56-9AE3-F73C6911A7B1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Progresstracker.Monolith", "Progresstracker.Monolith\Progresstracker.Monolith.csproj", "{9F943F60-9D26-4F56-9AE3-F73C6911A7B1}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Progresstracker.PluginDatabase", "Progresstracker.PluginDatabase\Progresstracker.PluginDatabase.csproj", "{2A2893F5-08AC-47B7-BCB0-C8F7BA2CEBBA}"
 EndProject
