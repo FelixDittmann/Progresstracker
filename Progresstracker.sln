@@ -3,7 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.9.34728.123
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Progresstracker", "Progresstracker.csproj", "{899687BB-600F-4EEF-A5E8-9E28222A1AA9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Progresstracker.Adapter", "Progresstracker.Adapter\Progresstracker.Adapter.csproj", "{29410C4F-87B9-4A1C-950B-8F3DEA9FE9B6}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Progresstracker.Application", "Progresstracker.Application\Progresstracker.Application.csproj", "{EC159799-611E-41FF-AD31-4B0F95E6CEDD}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Progresstracker.Domain", "Progresstracker.Domain\Progresstracker.Domain.csproj", "{A34D24AD-3855-40CC-AD1E-01AD2A734F62}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Progresstracker", "Progresstracker.Monolith\Progresstracker.csproj", "{9F943F60-9D26-4F56-9AE3-F73C6911A7B1}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Progresstracker.PluginDatabase", "Progresstracker.PluginDatabase\Progresstracker.PluginDatabase.csproj", "{2A2893F5-08AC-47B7-BCB0-C8F7BA2CEBBA}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Progresstracker.PluginUI", "Progresstracker.PluginUI\Progresstracker.PluginUI.csproj", "{126A4F5E-F1FA-4D17-8DF7-57C9C6F8490B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,10 +21,30 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{899687BB-600F-4EEF-A5E8-9E28222A1AA9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{899687BB-600F-4EEF-A5E8-9E28222A1AA9}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{899687BB-600F-4EEF-A5E8-9E28222A1AA9}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{899687BB-600F-4EEF-A5E8-9E28222A1AA9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{29410C4F-87B9-4A1C-950B-8F3DEA9FE9B6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{29410C4F-87B9-4A1C-950B-8F3DEA9FE9B6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{29410C4F-87B9-4A1C-950B-8F3DEA9FE9B6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{29410C4F-87B9-4A1C-950B-8F3DEA9FE9B6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EC159799-611E-41FF-AD31-4B0F95E6CEDD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EC159799-611E-41FF-AD31-4B0F95E6CEDD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EC159799-611E-41FF-AD31-4B0F95E6CEDD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EC159799-611E-41FF-AD31-4B0F95E6CEDD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A34D24AD-3855-40CC-AD1E-01AD2A734F62}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A34D24AD-3855-40CC-AD1E-01AD2A734F62}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A34D24AD-3855-40CC-AD1E-01AD2A734F62}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A34D24AD-3855-40CC-AD1E-01AD2A734F62}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9F943F60-9D26-4F56-9AE3-F73C6911A7B1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9F943F60-9D26-4F56-9AE3-F73C6911A7B1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9F943F60-9D26-4F56-9AE3-F73C6911A7B1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9F943F60-9D26-4F56-9AE3-F73C6911A7B1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2A2893F5-08AC-47B7-BCB0-C8F7BA2CEBBA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2A2893F5-08AC-47B7-BCB0-C8F7BA2CEBBA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2A2893F5-08AC-47B7-BCB0-C8F7BA2CEBBA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2A2893F5-08AC-47B7-BCB0-C8F7BA2CEBBA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{126A4F5E-F1FA-4D17-8DF7-57C9C6F8490B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{126A4F5E-F1FA-4D17-8DF7-57C9C6F8490B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{126A4F5E-F1FA-4D17-8DF7-57C9C6F8490B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{126A4F5E-F1FA-4D17-8DF7-57C9C6F8490B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
