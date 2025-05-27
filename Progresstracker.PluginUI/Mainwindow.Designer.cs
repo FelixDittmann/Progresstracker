@@ -29,24 +29,38 @@
         private void InitializeComponent()
         {
             button1 = new Button();
+            button2 = new Button();
             SuspendLayout();
             // 
             // button1
             // 
-            button1.Location = new Point(94, 62);
+            button1.Location = new Point(51, 28);
+            button1.Margin = new Padding(2, 1, 2, 1);
             button1.Name = "button1";
-            button1.Size = new Size(150, 46);
+            button1.Size = new Size(121, 23);
             button1.TabIndex = 0;
-            button1.Text = "button1";
+            button1.Text = "Aktivität anlegen";
             button1.UseVisualStyleBackColor = true;
             button1.Click += button1_Click;
             // 
+            // button2
+            // 
+            button2.Location = new Point(51, 55);
+            button2.Name = "button2";
+            button2.Size = new Size(121, 23);
+            button2.TabIndex = 1;
+            button2.Text = "Profil anlegen";
+            button2.UseVisualStyleBackColor = true;
+            button2.Click += button2_Click;
+            // 
             // Mainwindow
             // 
-            AutoScaleDimensions = new SizeF(13F, 32F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1310, 841);
+            ClientSize = new Size(705, 394);
+            Controls.Add(button2);
             Controls.Add(button1);
+            Margin = new Padding(2, 1, 2, 1);
             Name = "Mainwindow";
             Text = "ProgressTracker";
             ResumeLayout(false);
@@ -55,5 +69,6 @@
         #endregion
 
         private Button button1;
+        private Button button2;
     }
 }
