@@ -4,16 +4,31 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 17.9.34728.123
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Progresstracker.Adapter", "Progresstracker.Adapter\Progresstracker.Adapter.csproj", "{29410C4F-87B9-4A1C-950B-8F3DEA9FE9B6}"
+	ProjectSection(ProjectDependencies) = postProject
+		{A34D24AD-3855-40CC-AD1E-01AD2A734F62} = {A34D24AD-3855-40CC-AD1E-01AD2A734F62}
+		{EC159799-611E-41FF-AD31-4B0F95E6CEDD} = {EC159799-611E-41FF-AD31-4B0F95E6CEDD}
+	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Progresstracker.Application", "Progresstracker.Application\Progresstracker.Application.csproj", "{EC159799-611E-41FF-AD31-4B0F95E6CEDD}"
+	ProjectSection(ProjectDependencies) = postProject
+		{A34D24AD-3855-40CC-AD1E-01AD2A734F62} = {A34D24AD-3855-40CC-AD1E-01AD2A734F62}
+	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Progresstracker.Domain", "Progresstracker.Domain\Progresstracker.Domain.csproj", "{A34D24AD-3855-40CC-AD1E-01AD2A734F62}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Progresstracker.Monolith", "Progresstracker.Monolith\Progresstracker.Monolith.csproj", "{9F943F60-9D26-4F56-9AE3-F73C6911A7B1}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Progresstracker.PluginDatabase", "Progresstracker.PluginDatabase\Progresstracker.PluginDatabase.csproj", "{2A2893F5-08AC-47B7-BCB0-C8F7BA2CEBBA}"
+	ProjectSection(ProjectDependencies) = postProject
+		{29410C4F-87B9-4A1C-950B-8F3DEA9FE9B6} = {29410C4F-87B9-4A1C-950B-8F3DEA9FE9B6}
+		{A34D24AD-3855-40CC-AD1E-01AD2A734F62} = {A34D24AD-3855-40CC-AD1E-01AD2A734F62}
+		{EC159799-611E-41FF-AD31-4B0F95E6CEDD} = {EC159799-611E-41FF-AD31-4B0F95E6CEDD}
+	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Progresstracker.PluginUI", "Progresstracker.PluginUI\Progresstracker.PluginUI.csproj", "{126A4F5E-F1FA-4D17-8DF7-57C9C6F8490B}"
+	ProjectSection(ProjectDependencies) = postProject
+		{29410C4F-87B9-4A1C-950B-8F3DEA9FE9B6} = {29410C4F-87B9-4A1C-950B-8F3DEA9FE9B6}
+		{A34D24AD-3855-40CC-AD1E-01AD2A734F62} = {A34D24AD-3855-40CC-AD1E-01AD2A734F62}
+		{EC159799-611E-41FF-AD31-4B0F95E6CEDD} = {EC159799-611E-41FF-AD31-4B0F95E6CEDD}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,10 +48,6 @@ Global
 		{A34D24AD-3855-40CC-AD1E-01AD2A734F62}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A34D24AD-3855-40CC-AD1E-01AD2A734F62}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A34D24AD-3855-40CC-AD1E-01AD2A734F62}.Release|Any CPU.Build.0 = Release|Any CPU
-		{9F943F60-9D26-4F56-9AE3-F73C6911A7B1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9F943F60-9D26-4F56-9AE3-F73C6911A7B1}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9F943F60-9D26-4F56-9AE3-F73C6911A7B1}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9F943F60-9D26-4F56-9AE3-F73C6911A7B1}.Release|Any CPU.Build.0 = Release|Any CPU
 		{2A2893F5-08AC-47B7-BCB0-C8F7BA2CEBBA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{2A2893F5-08AC-47B7-BCB0-C8F7BA2CEBBA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2A2893F5-08AC-47B7-BCB0-C8F7BA2CEBBA}.Release|Any CPU.ActiveCfg = Release|Any CPU

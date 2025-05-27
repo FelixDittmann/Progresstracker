@@ -1,16 +1,17 @@
 using Progresstracker.Application;
 using Progresstracker.Domain;
+using Progresstracker.Domain.DataObjects;
 
-namespace Progresstracker.PluginUI.Controllers
+namespace Progresstracker.PluginUI
 {
     public class GameSyncController
     {
-        private readonly SyncAchievementsUseCase _syncAchievementsUseCase;
+        private readonly SyncAchievement _syncAchievementsUseCase;
         private readonly IGameRepository _gameRepo;
         private readonly IGameProgressCalculator _progressCalculator;
 
         public GameSyncController(
-            SyncAchievementsUseCase syncAchievementsUseCase,
+            SyncAchievement syncAchievementsUseCase,
             IGameRepository gameRepo,
             IGameProgressCalculator progressCalculator)
         {

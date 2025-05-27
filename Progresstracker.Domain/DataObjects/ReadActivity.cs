@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Progresstracker.DataObjects
+namespace Progresstracker.Domain.DataObjects
 {
     internal class ReadActivity(int activityId, string name, string category, int wantedResult, List<int>? currentProg) : IActivity
     {

@@ -1,3 +1,5 @@
+using Progresstracker.Domain.DataObjects;
+
 public interface IGameProgressCalculator
 {
     double Calculate(Game game);

@@ -1,4 +1,10 @@
-public interface IAchievementProvider
+using Progresstracker.Domain.DataObjects;
+
+namespace Progresstracker.Application
 {
-	Task<List<Achievement>> GetAchievementsAsync(string externalId, UserProfile profile);
+	public interface IAchievementProvider
+	{
+		Task<List<Achievement>> GetAchievementsAsync(string externalId, UserProfile profile);
+	}
 }
+

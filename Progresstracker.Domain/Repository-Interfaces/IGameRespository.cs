@@ -1,7 +1,12 @@
-public interface IGameRepository
+using Progresstracker.Domain.DataObjects;
+
+namespace Progresstracker.Domain
 {
-	Task<Game?> GetByIdAsync(Guid id);
-	Task<List<Game>> GetAllAsync();
-	Task AddAsync(Game game);
-	Task UpdateAsync(Game game);
+    public interface IGameRepository
+    {
+        Task<Game?> GetByIdAsync(Guid id);
+        Task<List<Game>> GetAllAsync();
+        Task AddAsync(Game game);
+        Task UpdateAsync(Game game);
+    }
 }

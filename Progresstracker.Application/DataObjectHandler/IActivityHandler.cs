@@ -4,9 +4,9 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
-using Progresstracker.DataObjects;
+using Progresstracker.Domain.DataObjects;
 
-namespace Progresstracker.DataObjectHandler
+namespace Progresstracker.Application.DataObjectHandler
 {
     public interface IActivityHandler
     {

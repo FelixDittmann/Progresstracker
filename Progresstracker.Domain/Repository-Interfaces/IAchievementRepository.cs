@@ -1,5 +1,10 @@
-public interface IAchievementRepository
+using Progresstracker.Domain.DataObjects;
+
+namespace Progresstracker.Domain
 {
-    Task<List<Achievement>> GetByGameIdAsync(Guid gameId);
-    Task UpdateAsync(Achievement achievement);
+    public interface IAchievementRepository
+    {
+        Task<List<Achievement>> GetByGameIdAsync(Guid gameId);
+        Task UpdateAsync(Achievement achievement);
+    }
 }

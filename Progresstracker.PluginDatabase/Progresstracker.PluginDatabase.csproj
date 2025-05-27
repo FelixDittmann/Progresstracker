@@ -7,4 +7,15 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.5" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite.Core" Version="9.0.5" />
+  </ItemGroup>
+
+    <ItemGroup>
+		<ProjectReference Include="..\Progresstracker.Domain\Progresstracker.Domain.csproj" />
+	    <ProjectReference Include="..\Progresstracker.Application\Progresstracker.Application.csproj" />
+		<ProjectReference Include="..\Progresstracker.Adapter\Progresstracker.Adapter.csproj" />
+	</ItemGroup>
+
 </Project>
