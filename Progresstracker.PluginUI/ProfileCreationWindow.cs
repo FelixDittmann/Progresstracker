@@ -21,42 +21,33 @@ namespace Progresstracker.PluginUI
         {
             InitializeComponent();
             _profileAdapter = profileAdapter;
-            Debug.WriteLine("Adapter ist null? " + (_profileAdapter == null));
         }
 
-        private void button_create_Click(object sender, EventArgs e)
+        private async void button_create_Click(object sender, EventArgs e)
         {
-            Debug.WriteLine("UI: Button-Click erfolgreich");
-
             string profileName;
             string apiKey;
             string steamProfileId;
 
-            string customApiKey = "123456789";          //CustomApiKey needed
-            //if(textBox_steamProfileId.Text == "")     no SteamProfileID needed
+            string customApiKey = "123456789abcdefghijklmnopqrstuvw";          //CustomApiKey needed
+            if(textBox_apiKey.Text == "") textBox_apiKey.Text = customApiKey;
 
-            if (textBox_profileName.Text == "")
-            {
-                string message = "Bitte Profilname eingeben!";
-                MessageBox.Show(message, "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            else
-            {
-                if(textBox_apiKey.Text == "") textBox_apiKey.Text = customApiKey;
-                profileName = textBox_profileName.Text;
-                apiKey = textBox_apiKey.Text;
-                steamProfileId = textBox_steamProfileId.Text;
-                //Profil erstellen
-                try
-                {
-                    _profileAdapter.CreateProfile(profileName, apiKey, steamProfileId);
-                }
-                catch (Exception ex)
-                {
-                    Debug.WriteLine("Fehler am Anfang");
+            profileName = textBox_profileName.Text;
+            apiKey = textBox_apiKey.Text;
+            steamProfileId = textBox_steamProfileId.Text;
 
-                }
+            //Profil erstellen
+            var (success, errorMessage) = await _profileAdapter.CreateProfile(profileName, apiKey, steamProfileId);
+
+            if (!success)
+            {
+                MessageBox.Show(errorMessage, "Ungültige Eingabe", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
             }
+
+            MessageBox.Show("Profil erfolgreich erstellt!", "Erfolg", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            this.Close(); // Fenster schließen, falls gewünscht
+
         }
     }
 }

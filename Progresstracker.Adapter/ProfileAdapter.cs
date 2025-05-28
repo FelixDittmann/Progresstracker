@@ -7,12 +7,13 @@ using static System.Runtime.InteropServices.JavaScript.JSType;
 using Progresstracker.Domain.DataObjects;
 using Progresstracker.Application.DataObjectHandler;
 using System.Diagnostics;
+using System.Windows;
 
 namespace Progresstracker.Adapter
 {
     public interface IProfileAdapter
     {
-        void CreateProfile(string name, string steamApiKey, string steamProfileId);
+        Task<(bool Success, string ErrorMessage)> CreateProfile(string name, string steamApiKey, string steamProfileId);
     }
 
     public class ProfileAdapter : IProfileAdapter
@@ -24,14 +25,33 @@ namespace Progresstracker.Adapter
             _profileService = profileService;
         }
 
-        public void CreateProfile(string name, string steamApiKey, string steamProfileId)
+        public async Task<(bool Success, string ErrorMessage)> CreateProfile(string name, string steamApiKey, string steamProfileId)
         {
-            // Minimale Eingabevalidierung, kann bei Bedarf erweitert werden
-            if (string.IsNullOrWhiteSpace(name))
-                throw new ArgumentException("Name darf nicht leer sein.");
+            var errors = new List<string>();
+
+            if (string.IsNullOrWhiteSpace(name) || name.Length < 3)
+                errors.Add("Der Profilname muss mindestens 3 Zeichen lang sein.");
+
+            if (string.IsNullOrWhiteSpace(steamApiKey) || steamApiKey.Length != 32 || !steamApiKey.All(char.IsLetterOrDigit))
+                errors.Add("Der Steam API Key muss 32 alphanumerische Zeichen enthalten.");
+
+            if (string.IsNullOrWhiteSpace(steamProfileId) ||
+                steamProfileId.Length != 17 ||
+                !steamProfileId.All(char.IsDigit) ||
+                !steamProfileId.StartsWith("7656119"))
+            {
+                errors.Add("Die Steam ID muss eine 17-stellige Zahl sein und mit '7656119' beginnen.");
+            }
+
+            if (errors.Any())
+            {
+                return (false, string.Join(Environment.NewLine, errors));
+            }
 
             var profile = new UserProfile(name, steamApiKey, steamProfileId);
-            _profileService.CreateProfile(profile);
+            await _profileService.CreateProfile(profile);
+
+            return (true, null);
         }
     }
 }
