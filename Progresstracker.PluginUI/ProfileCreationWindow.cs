@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using System.Xml.Linq;
 using Progresstracker.Adapter;
+using System.Diagnostics;
 
 namespace Progresstracker.PluginUI
 {
@@ -20,10 +21,13 @@ namespace Progresstracker.PluginUI
         {
             InitializeComponent();
             _profileAdapter = profileAdapter;
+            Debug.WriteLine("Adapter ist null? " + (_profileAdapter == null));
         }
 
         private void button_create_Click(object sender, EventArgs e)
         {
+            Debug.WriteLine("UI: Button-Click erfolgreich");
+
             string profileName;
             string apiKey;
             string steamProfileId;
@@ -49,6 +53,7 @@ namespace Progresstracker.PluginUI
                 }
                 catch (Exception ex)
                 {
+                    Debug.WriteLine("Fehler am Anfang");
 
                 }
             }

@@ -1,6 +1,4 @@
 using Progresstracker.Adapter;
-using Progresstracker.Application;
-using Progresstracker.Application.DataObjectHandler;
 using Progresstracker.PluginUI;
 using Progresstracker.UI;
 
@@ -8,9 +6,12 @@ namespace Progresstracker
 {
     public partial class Mainwindow : Form
     {
-        public Mainwindow()
+        private readonly IProfileAdapter _profileAdapter;
+
+        public Mainwindow(IProfileAdapter profileAdapter)
         {
             InitializeComponent();
+            _profileAdapter = profileAdapter;
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -21,10 +22,9 @@ namespace Progresstracker
 
         private void button2_Click(object sender, EventArgs e)
         {
-            var profileService = new ProfileService(profileRepository); //TODO
-            var profileAdapter = new ProfileAdapter(profileService);
-            ProfileCreationWindow profileCreationWindow = new(profileAdapter);
+            var profileCreationWindow = new ProfileCreationWindow(_profileAdapter);
             profileCreationWindow.Show();
         }
     }
 }
+

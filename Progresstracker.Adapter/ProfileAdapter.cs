@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 using Progresstracker.Domain.DataObjects;
 using Progresstracker.Application.DataObjectHandler;
+using System.Diagnostics;
 
 namespace Progresstracker.Adapter
 {
@@ -29,7 +30,7 @@ namespace Progresstracker.Adapter
             if (string.IsNullOrWhiteSpace(name))
                 throw new ArgumentException("Name darf nicht leer sein.");
 
-            var profile = new UserProfile(Guid.NewGuid(), name, steamApiKey, steamProfileId);
+            var profile = new UserProfile(name, steamApiKey, steamProfileId);
             _profileService.CreateProfile(profile);
         }
     }

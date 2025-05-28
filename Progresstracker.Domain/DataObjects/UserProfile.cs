@@ -8,15 +8,17 @@ namespace Progresstracker.Domain.DataObjects
 {
     public class UserProfile
     {
-        public Guid UserProfileID { get; set; }
+        public Guid Id { get; set; }
+
         public string Name { get; set; }
         public string SteamApiKey { get; set; }
         public string SteamProfileID { get; set; }
         // public List<string> Sources { get; set; }
 
-        public UserProfile(Guid id, string name, string steamApiKey, string steamProfileId)
+        // Parameterloser Konstruktor für EF Core
+        public UserProfile() { }
+        public UserProfile(string name, string steamApiKey, string steamProfileId)
         {
-            UserProfileID = id;
             Name = name;
             SteamApiKey = steamApiKey;
             SteamProfileID = steamProfileId;

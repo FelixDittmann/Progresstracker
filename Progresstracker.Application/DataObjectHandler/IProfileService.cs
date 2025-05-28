@@ -6,12 +6,13 @@ using System.Threading.Tasks;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 using Progresstracker.Domain.DataObjects;
 using Progresstracker.Domain.Repository_Interfaces;
+using System.Diagnostics;
 
 namespace Progresstracker.Application.DataObjectHandler
 {
     public interface IProfileService
     {
-        void CreateProfile(UserProfile profile);
+        Task CreateProfile(UserProfile profile);
     }
 
     public class ProfileService : IProfileService
@@ -23,9 +24,9 @@ namespace Progresstracker.Application.DataObjectHandler
             _userProfileRepository = userProfileRepository;
         }
 
-        public void CreateProfile(UserProfile profile)
+        public async Task CreateProfile(UserProfile profile)
         {
-            _userProfileRepository.AddAsync(profile);
+            await _userProfileRepository.AddAsync(profile);
         }
     }
 }

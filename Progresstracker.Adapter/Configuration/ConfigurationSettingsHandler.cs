@@ -15,7 +15,7 @@ namespace Progresstracker.Adapter.Configuration
 
             public ConfigurationSettingsHandler(IConfiguration config)
             {
-                DatabasePath = config["DbPath"] ?? "";
+                DatabasePath = $"Data Source={Path.Combine(Directory.GetParent(AppDomain.CurrentDomain.BaseDirectory).Parent.Parent.FullName, "Debug\\net8.0-windows", "progress.db")}";
             }
         }
     }
