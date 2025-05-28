@@ -29,9 +29,6 @@ namespace Progresstracker.PluginUI
             string apiKey;
             string steamProfileId;
 
-            string customApiKey = "123456789abcdefghijklmnopqrstuvw";          //CustomApiKey needed
-            if(textBox_apiKey.Text == "") textBox_apiKey.Text = customApiKey;
-
             profileName = textBox_profileName.Text;
             apiKey = textBox_apiKey.Text;
             steamProfileId = textBox_steamProfileId.Text;
