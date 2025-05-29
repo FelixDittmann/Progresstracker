@@ -28,7 +28,9 @@ public class ProgressTrackerDatabaseContext : DbContext
         {
             modelBuilder.Entity<Game>().HasKey(g => g.Id);
             modelBuilder.Entity<Achievement>().HasKey(a => a.Id);
-            // weitere Konfigurationen
+            modelBuilder.Entity<UserProfile>().HasKey(p => p.UserProfileID);
+            modelBuilder.Entity<SportActivity>().HasKey(s => s.ActivityID);
+            modelBuilder.Entity<ReadActivity>().HasKey(r => r.ActivityID);
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

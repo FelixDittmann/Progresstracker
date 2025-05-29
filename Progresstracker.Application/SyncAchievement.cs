@@ -24,14 +24,14 @@ namespace Progresstracker.Application
             var user = await _userRepo.GetByIdAsync(profileId);
             var game = await _gameRepo.GetByIdAsync(gameId);
 
-            if (user == null || game == null || string.IsNullOrEmpty(game.ExternalServiceId))
-                return;
+            if (user != null && game != null && game.ExternalIds != null)
+            {
+                var newAchievements = await _achievementProvider.GetAchievementsAsync(game, user);
 
-            var newAchievements = await _achievementProvider.GetAchievementsAsync(game.ExternalServiceId, user);
-
-            game.Achievements.Clear();
-            game.Achievements.AddRange(newAchievements);
-            await _gameRepo.UpdateAsync(game);
+                game.Achievements.Clear();
+                game.Achievements.AddRange(newAchievements);
+                await _gameRepo.UpdateAsync(game);
+            }
         }
     }
 }
