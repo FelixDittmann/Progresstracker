@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Progresstracker.Domain.DataObjects
 {
-    internal class ReadActivity(int activityId, string name, string category, int wantedResult, List<int>? currentProg) : IActivity
+    public class ReadActivity(int activityId, string name, string category, int wantedResult, List<int>? currentProg) : IActivity
     {
         public long Id { get; set; } = activityId;
         public string Name { get; set; } = name;
