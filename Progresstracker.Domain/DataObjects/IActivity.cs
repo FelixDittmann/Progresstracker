@@ -8,7 +8,7 @@ namespace Progresstracker.Domain.DataObjects
 {
     public interface IActivity
     {
-        public long ActivityID { get; set; }
+        public long Id { get; set; }
         public string Name { get; set; }
         public string Category { get; set; }
         public int WantedResult { get; set; }

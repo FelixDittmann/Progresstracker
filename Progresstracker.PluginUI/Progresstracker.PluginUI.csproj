@@ -9,18 +9,34 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Update="ActivityCreationWindow.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Update="Mainwindow.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <None Remove="appsettings.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="appsettings.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="9.0.5">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Extensions.Hosting" Version="9.0.5" />
+    <PackageReference Include="SQLitePCLRaw.bundle_e_sqlite3" Version="2.1.11" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="ActivityCreationWindow.cs" />
+    <Compile Update="Mainwindow.cs" />
   </ItemGroup>
 	
 	<ItemGroup>
 		<ProjectReference Include="..\Progresstracker.Domain\Progresstracker.Domain.csproj" />
 		<ProjectReference Include="..\Progresstracker.Application\Progresstracker.Application.csproj" />
 		<ProjectReference Include="..\Progresstracker.Adapter\Progresstracker.Adapter.csproj" />
+		<ProjectReference Include="..\Progresstracker.PluginDatabase\Progresstracker.PluginDatabase.csproj" />
 	</ItemGroup>
 
 </Project>

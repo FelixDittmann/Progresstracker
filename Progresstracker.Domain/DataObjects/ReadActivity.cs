@@ -8,7 +8,7 @@ namespace Progresstracker.Domain.DataObjects
 {
     public class ReadActivity(int activityId, string name, string category, int wantedResult, List<int>? currentProg) : IActivity
     {
-        public long ActivityID { get; set; } = activityId;
+        public long Id { get; set; } = activityId;
         public string Name { get; set; } = name;
         public string Category { get; set; } = category;
         public int WantedResult { get; set; } = wantedResult;

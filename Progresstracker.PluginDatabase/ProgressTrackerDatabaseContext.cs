@@ -17,9 +17,9 @@ public class ProgressTrackerDatabaseContext : DbContext
         public DbSet<Achievement> Achievements { get; set; }
         public DbSet<UserProfile> Profiles { get; set; } 
         public DbSet<SportActivity> SportActivities { get; set; }
-        private ConfigurationSettingsHandler _configuration;
+        private readonly ConfigurationSettingsHandler _configuration;
 
-        public ProgressTrackerDatabaseContext(ConfigurationSettingsHandler configuration) : base()
+        public ProgressTrackerDatabaseContext(DbContextOptions<ProgressTrackerDatabaseContext> options, ConfigurationSettingsHandler configuration) : base(options)
         {
             _configuration = configuration;
         }
@@ -28,9 +28,10 @@ public class ProgressTrackerDatabaseContext : DbContext
         {
             modelBuilder.Entity<Game>().HasKey(g => g.Id);
             modelBuilder.Entity<Achievement>().HasKey(a => a.Id);
-            modelBuilder.Entity<UserProfile>().HasKey(p => p.UserProfileID);
-            modelBuilder.Entity<SportActivity>().HasKey(s => s.ActivityID);
-            modelBuilder.Entity<ReadActivity>().HasKey(r => r.ActivityID);
+            modelBuilder.Entity<UserProfile>().HasKey(p => p.Id);
+            modelBuilder.Entity<UserProfile>().ToTable("Profiles");
+
+            // weitere Konfigurationen
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

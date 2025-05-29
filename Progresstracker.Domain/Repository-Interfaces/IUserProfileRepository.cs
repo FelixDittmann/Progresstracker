@@ -13,6 +13,6 @@ namespace Progresstracker.Domain.Repository_Interfaces
         Task<List<UserProfile>> GetAllAsync();
         Task AddAsync(UserProfile profile);
         Task UpdateAsync(UserProfile profile);
-        Task DeleteAsync(Guid id);
+        Task DeleteAsync(int id);
     }
 }
