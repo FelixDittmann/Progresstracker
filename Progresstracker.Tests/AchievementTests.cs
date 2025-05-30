@@ -8,10 +8,11 @@ namespace Progresstracker.Tests
 {
     public class AchievementTests
     {
+        /*
         [Fact]
         public void Test()
         {
             //TODO
-        }
+        }*/
     }
 }

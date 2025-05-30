@@ -14,11 +14,13 @@ namespace Progresstracker.Application.DataObjectHandler
     public interface IProfileService
     {
         Task<(bool Success, string ErrorMessage)> CreateProfile(string name, string steamApiKey, string steamProfileId);
+        Task<List<UserProfile>> GetAllProfiles();
     }
 
     public class ProfileService : IProfileService
     {
         private readonly IUserProfileRepository _userProfileRepository;
+        public static event EventHandler<UserProfile>? ProfileCreated;
 
         public ProfileService(IUserProfileRepository userProfileRepository)
         {
@@ -52,8 +54,14 @@ namespace Progresstracker.Application.DataObjectHandler
 
             var profile = new UserProfile(name, steamApiKey, steamProfileId);
             await _userProfileRepository.AddAsync(profile);
+            ProfileCreated?.Invoke(this, profile);
 
             return (true, null);
+        }
+
+        public async Task<List<UserProfile>> GetAllProfiles()
+        {
+            return await _userProfileRepository.GetAllAsync(); // Repository liefert IEnumerable<UserProfile>
         }
     }
 }

@@ -8,6 +8,7 @@ namespace Progresstracker.Domain.DataObjects
 {
     public class GameSourceIdentifier
     {
+        public Guid Id { get; set; }
         public string Source { get; set; }
         public string ExternalId { get; set; }
     }

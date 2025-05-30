@@ -14,6 +14,7 @@ namespace Progresstracker.Adapter
     public interface IProfileAdapter
     {
         Task<(bool Success, string ErrorMessage)> CreateProfile(string name, string steamApiKey, string steamProfileId);
+        Task<List<UserProfile>> GetAllProfiles();
     }
 
     public class ProfileAdapter : IProfileAdapter
@@ -30,6 +31,11 @@ namespace Progresstracker.Adapter
 
             return await _profileService.CreateProfile(name, steamApiKey, steamProfileId);
 
+        }
+
+        public async Task<List<UserProfile>> GetAllProfiles()
+        {
+            return await _profileService.GetAllProfiles();
         }
     }
 }

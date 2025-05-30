@@ -30,6 +30,8 @@
         {
             button1 = new Button();
             button2 = new Button();
+            comboBoxProfiles = new ComboBox();
+            label1 = new Label();
             SuspendLayout();
             // 
             // button1
@@ -53,22 +55,44 @@
             button2.UseVisualStyleBackColor = true;
             button2.Click += button2_Click;
             // 
+            // comboBoxProfiles
+            // 
+            comboBoxProfiles.FormattingEnabled = true;
+            comboBoxProfiles.Location = new Point(500, 28);
+            comboBoxProfiles.Name = "comboBoxProfiles";
+            comboBoxProfiles.Size = new Size(121, 23);
+            comboBoxProfiles.TabIndex = 2;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new Point(436, 36);
+            label1.Name = "label1";
+            label1.Size = new Size(49, 15);
+            label1.TabIndex = 3;
+            label1.Text = "Profiles:";
+            // 
             // Mainwindow
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(705, 394);
+            Controls.Add(label1);
+            Controls.Add(comboBoxProfiles);
             Controls.Add(button2);
             Controls.Add(button1);
             Margin = new Padding(2, 1, 2, 1);
             Name = "Mainwindow";
             Text = "ProgressTracker";
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
 
         private Button button1;
         private Button button2;
+        private ComboBox comboBoxProfiles;
+        private Label label1;
     }
 }
