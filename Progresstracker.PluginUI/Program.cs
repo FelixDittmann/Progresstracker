@@ -25,28 +25,23 @@ namespace Progresstracker.PluginUI
             var host = Host.CreateDefaultBuilder()
                 .ConfigureAppConfiguration((context, config) =>
                 {
-                    // Lade appsettings.json
                     config.AddJsonFile("appsettings.json", optional: false, reloadOnChange: true);
                 })
                 .ConfigureServices((context, services) =>
                 {
-                    // Konfiguration (z.?B. Connection String)
                     services.AddSingleton<IConfiguration>(context.Configuration);
                     services.AddSingleton<ConfigurationSettingsHandler>();
 
-                    // DbContext
                     services.AddDbContext<ProgressTrackerDatabaseContext>((provider, options) =>
                     {
                         var configHandler = provider.GetRequiredService<ConfigurationSettingsHandler>();
                         options.UseSqlite(configHandler.DatabasePath);
                     });
 
-                    // Repositories & Services
                     services.AddScoped<IUserProfileRepository, UserProfileRepository>();
                     services.AddScoped<IProfileService, ProfileService>();
                     services.AddScoped<IProfileAdapter, ProfileAdapter>();
 
-                    // UI
                     services.AddTransient<Mainwindow>();
                 })
                 .Build();
