@@ -18,7 +18,7 @@ namespace Progresstracker.Adapter.Steam
             if (game is not SteamGameInfo)
                 throw new ArgumentException("Invalid game type");
             if (string.IsNullOrWhiteSpace(profile.SteamApiKey) || string.IsNullOrWhiteSpace(profile.SteamProfileID))
-                return [];
+                throw new ArgumentException("Invalid or empty profile given");
 
             SteamGameInfo steamGame = (SteamGameInfo)game;
 
