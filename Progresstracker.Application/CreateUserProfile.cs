@@ -21,7 +21,6 @@ namespace Progresstracker.Application
         {
             var profile = new UserProfile
             {
-                UserProfileID = Guid.NewGuid(),
                 Name = displayName,
                 SteamApiKey = steamKey,
                 SteamProfileID = steamUserId
