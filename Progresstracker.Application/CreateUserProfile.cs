@@ -17,7 +17,7 @@ namespace Progresstracker.Application
             _repository = repository;
         }
 
-        public async Task ExecuteAsync(string displayName, string? steamKey = null, string? steamUserId = null)
+        public async Task CreateUserProfileAsync(string displayName, string? steamKey = null, string? steamUserId = null)
         {
             var profile = new UserProfile
             {

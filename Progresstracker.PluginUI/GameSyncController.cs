@@ -22,7 +22,7 @@ namespace Progresstracker.PluginUI
 
         public async Task<(Game game, double progress)> SyncGameAsync(Guid profileId, Guid gameId)
         {
-            await _syncAchievements.ExecuteAsync(profileId, gameId);
+            await _syncAchievements.SyncAchievementsAsync(profileId, gameId);
             var updatedGame = await _gameRepo.GetByIdAsync(gameId);
             var progress = _progressCalculator.Calculate(updatedGame);
             return (updatedGame, progress);

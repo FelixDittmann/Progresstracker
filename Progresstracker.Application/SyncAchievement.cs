@@ -19,7 +19,7 @@ namespace Progresstracker.Application
             _achievementProvider = achievementProvider;
         }
 
-        public async Task ExecuteAsync(Guid profileId, Guid gameId)
+        public async Task SyncAchievementsAsync(Guid profileId, Guid gameId)
         {
             var user = await _userRepo.GetByIdAsync(profileId);
             var game = await _gameRepo.GetByIdAsync(gameId);
