@@ -29,18 +29,9 @@ namespace Progresstracker.PluginUI
                 })
                 .ConfigureServices((context, services) =>
                 {
-                    services.AddSingleton<IConfiguration>(context.Configuration);
-                    services.AddSingleton<ConfigurationSettingsHandler>();
-
-                    services.AddDbContext<ProgressTrackerDatabaseContext>((provider, options) =>
-                    {
-                        var configHandler = provider.GetRequiredService<ConfigurationSettingsHandler>();
-                        options.UseSqlite(configHandler.DatabasePath);
-                    });
-
-                    services.AddScoped<IUserProfileRepository, UserProfileRepository>();
-                    services.AddScoped<IProfileService, ProfileService>();
-                    services.AddScoped<IProfileAdapter, ProfileAdapter>();
+                    AddConfigurationSettings(context, services);
+                    AddDBContext(context, services);
+                    AddServicesAndRepositories(context, services);
 
                     services.AddTransient<Mainwindow>();
                 })
@@ -48,6 +39,26 @@ namespace Progresstracker.PluginUI
 
             var mainWindow = host.Services.GetRequiredService<Mainwindow>();
             System.Windows.Forms.Application.Run(mainWindow);
+        }
+
+        static void AddConfigurationSettings(HostBuilderContext context, IServiceCollection services)
+        {
+            services.AddSingleton<IConfiguration>(context.Configuration);
+            services.AddSingleton<ConfigurationSettingsHandler>();
+        }
+        static void AddDBContext(HostBuilderContext context, IServiceCollection services)
+        {
+            services.AddDbContext<ProgressTrackerDatabaseContext>((provider, options) =>
+            {
+                var configHandler = provider.GetRequiredService<ConfigurationSettingsHandler>();
+                options.UseSqlite(configHandler.DatabasePath);
+            });
+        }
+        static void AddServicesAndRepositories(HostBuilderContext context, IServiceCollection services)
+        {
+            services.AddScoped<IUserProfileRepository, UserProfileRepository>();
+            services.AddScoped<IProfileService, ProfileService>();
+            services.AddScoped<IProfileAdapter, ProfileAdapter>();
         }
     }
 }
